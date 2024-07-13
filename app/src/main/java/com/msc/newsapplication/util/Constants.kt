@@ -8,4 +8,8 @@ object Constants {
     const val NEWS_BASE_URL = "https://newsapi.org/v2/"
     const val NEWS_API_KEY = "a74943571d8b46599e579db86dfc233c"
 
+    // DataStore 의 이름
+    const val USER_SETTINGS = "userSettings"
+    const val APP_ENTRY = "appEntry"
+
 }

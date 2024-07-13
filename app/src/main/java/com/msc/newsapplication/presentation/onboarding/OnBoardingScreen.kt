@@ -21,6 +21,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import com.msc.newsapplication.presentation.PhotoViewModel
 import com.msc.newsapplication.presentation.Dimens.MediumPadding2
 import com.msc.newsapplication.presentation.common.NewsButton
@@ -32,7 +33,8 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(
-    photoViewModel: PhotoViewModel
+    photoViewModel: PhotoViewModel,
+    event: (OnBoardingEvent) -> Unit // 이벤트를 받는다.
 ) {
 
     val photos = photoViewModel.photos.collectAsState()
@@ -93,7 +95,7 @@ fun OnBoardingScreen(
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 2) {
-                                Log.d("TAG", "OnBoardingScreen: 메인 페이지로 이동!!")
+                                event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage +1
