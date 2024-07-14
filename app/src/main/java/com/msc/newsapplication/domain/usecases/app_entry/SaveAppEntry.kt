@@ -1,4 +1,4 @@
-package com.msc.newsapplication.domain.usecases
+package com.msc.newsapplication.domain.usecases.app_entry
 
 import com.msc.newsapplication.domain.manager.LocalUserManager
 

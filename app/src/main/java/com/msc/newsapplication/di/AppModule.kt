@@ -4,9 +4,9 @@ import android.app.Application
 import com.msc.newsapplication.data.manager.LocalUserManagerImpl
 import com.msc.newsapplication.data.remote.UnsplashApi
 import com.msc.newsapplication.domain.manager.LocalUserManager
-import com.msc.newsapplication.domain.usecases.AppEntryUseCases
-import com.msc.newsapplication.domain.usecases.ReadAppEntry
-import com.msc.newsapplication.domain.usecases.SaveAppEntry
+import com.msc.newsapplication.domain.usecases.app_entry.AppEntryUseCases
+import com.msc.newsapplication.domain.usecases.app_entry.ReadAppEntry
+import com.msc.newsapplication.domain.usecases.app_entry.SaveAppEntry
 import com.msc.newsapplication.util.Constants.NEWS_BASE_URL
 import com.msc.newsapplication.util.Constants.UNSPLASH_BASE_URL
 import dagger.Module
