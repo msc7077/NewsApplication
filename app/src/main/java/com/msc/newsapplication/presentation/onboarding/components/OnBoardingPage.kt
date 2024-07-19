@@ -47,13 +47,13 @@ fun OnBoardingPage(
                 text = it.slug,
                 modifier = Modifier.padding(horizontal = MediumPadding2),
                 style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
-                color = colorResource(id = R.color.purple_200)
+                color = colorResource(id = R.color.display_small)
             )
             Text(
                 text = it.id,
                 modifier = Modifier.padding(horizontal = MediumPadding2),
                 style = MaterialTheme.typography.bodyMedium,
-                color = colorResource(id = R.color.teal_200)
+                color = colorResource(id = R.color.text_medium)
             )
         }
     }

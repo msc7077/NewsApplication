@@ -2,11 +2,16 @@ package com.msc.newsapplication.di
 
 import android.app.Application
 import com.msc.newsapplication.data.manager.LocalUserManagerImpl
+import com.msc.newsapplication.data.remote.NewsApi
 import com.msc.newsapplication.data.remote.UnsplashApi
+import com.msc.newsapplication.data.repository.NewsRepositoryImpl
 import com.msc.newsapplication.domain.manager.LocalUserManager
+import com.msc.newsapplication.domain.repository.NewsRepository
 import com.msc.newsapplication.domain.usecases.app_entry.AppEntryUseCases
 import com.msc.newsapplication.domain.usecases.app_entry.ReadAppEntry
 import com.msc.newsapplication.domain.usecases.app_entry.SaveAppEntry
+import com.msc.newsapplication.domain.usecases.news.GetNews
+import com.msc.newsapplication.domain.usecases.news.NewsUseCases
 import com.msc.newsapplication.util.Constants.NEWS_BASE_URL
 import com.msc.newsapplication.util.Constants.UNSPLASH_BASE_URL
 import dagger.Module
@@ -71,12 +76,40 @@ object AppModule {
     fun provideAppEntryUseCases(
         /***
          * provideLocalUserManager 를 Provide 하고 있기 때문에 주입이 가능하다.
-         * 만약 Provide 하지 않은 객체를 주입한다면 Hilt Provide 에러가 발생한다.
+         * !!! 만약 Provide 하지 않은 객체를 주입한다면 Hilt Provide 에러가 발생한다.
          */
         localUserManager: LocalUserManager
     ) = AppEntryUseCases(
         readAppEntry = ReadAppEntry(localUserManager),
         saveAppEntry = SaveAppEntry(localUserManager)
     )
+
+    @Provides
+    @Singleton
+    fun provideNewApi(): NewsApi {
+        return Retrofit.Builder()
+            .baseUrl(NEWS_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(NewsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsRepository(
+        newsApi: NewsApi
+    ): NewsRepository {
+        return NewsRepositoryImpl(newsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideNewsUseCases(
+        newsRepository: NewsRepository
+    ): NewsUseCases {
+        return NewsUseCases(
+            getNews = GetNews(newsRepository)
+        )
+    }
 
 }
