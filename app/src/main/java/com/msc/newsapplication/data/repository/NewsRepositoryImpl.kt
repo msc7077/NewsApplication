@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.msc.newsapplication.data.remote.NewsApi
 import com.msc.newsapplication.data.remote.NewsPagingSource
+import com.msc.newsapplication.data.remote.SearchNewsPagingSource
 import com.msc.newsapplication.domain.model.Article
 import com.msc.newsapplication.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
@@ -18,6 +19,19 @@ class NewsRepositoryImpl(
             pagingSourceFactory = {
                 NewsPagingSource(
                     newsApi = newsApi,
+                    sources = sources.joinToString(separator = ",")
+                )
+            }
+        ).flow
+    }
+
+    override fun searchNews(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10), // 한 페이지에 제공되는 row 갯수
+            pagingSourceFactory = {
+                SearchNewsPagingSource(
+                    newsApi = newsApi,
+                    searchQuery = searchQuery,
                     sources = sources.joinToString(separator = ",")
                 )
             }

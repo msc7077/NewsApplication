@@ -15,9 +15,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.msc.newsapplication.presentation.PhotoViewModel
+import com.msc.newsapplication.presentation.home.HomeScreen
+import com.msc.newsapplication.presentation.home.HomeViewModel
 import com.msc.newsapplication.presentation.onboarding.OnBoardingScreen
 import com.msc.newsapplication.presentation.onboarding.OnBoardingViewModel
+import com.msc.newsapplication.presentation.search.SearchScreen
+import com.msc.newsapplication.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph (
@@ -52,10 +57,9 @@ fun NavGraph (
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(
-                        text = "NewsNavigatorScreen",
-                        style = TextStyle(color = MaterialTheme.colorScheme.error)
-                    )
+                    val viewModel: SearchViewModel = hiltViewModel()
+                    SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
+
                 }
             }
         }

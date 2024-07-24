@@ -11,9 +11,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.msc.newsapplication.data.remote.AlternativeSlugs
@@ -45,6 +47,8 @@ fun OnBoardingPage(
             Spacer(modifier = Modifier.height(MediumPadding1))
             Text(
                 text = it.slug,
+                maxLines = 4,
+                overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(horizontal = MediumPadding2),
                 style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
                 color = colorResource(id = R.color.display_small)
@@ -69,7 +73,7 @@ fun OnBoardingPagePreview() {
         OnBoardingPage(
             photo = UnsplashPhoto(
                 "sdflsdfsdf",
-                "rain bridge",
+                "ql soflsms",
                 AlternativeSlugs("비 내리는 다리"),
                 Urls("https://images.unsplash.com/photo-1719861032503-225fac307c59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MjgyOTl8MHwxfGFsbHwxfHx8fHx8Mnx8MTcyMDQyNTIwNnw&ixlib=rb-4.0.3&q=80&w=1080")
             )

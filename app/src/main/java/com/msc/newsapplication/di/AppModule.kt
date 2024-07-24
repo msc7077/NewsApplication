@@ -12,6 +12,7 @@ import com.msc.newsapplication.domain.usecases.app_entry.ReadAppEntry
 import com.msc.newsapplication.domain.usecases.app_entry.SaveAppEntry
 import com.msc.newsapplication.domain.usecases.news.GetNews
 import com.msc.newsapplication.domain.usecases.news.NewsUseCases
+import com.msc.newsapplication.domain.usecases.news.SearchNews
 import com.msc.newsapplication.util.Constants.NEWS_BASE_URL
 import com.msc.newsapplication.util.Constants.UNSPLASH_BASE_URL
 import dagger.Module
@@ -108,7 +109,8 @@ object AppModule {
         newsRepository: NewsRepository
     ): NewsUseCases {
         return NewsUseCases(
-            getNews = GetNews(newsRepository)
+            getNews = GetNews(newsRepository),
+            searchNews = SearchNews(newsRepository)
         )
     }
 
