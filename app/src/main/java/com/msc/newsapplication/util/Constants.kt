@@ -12,4 +12,7 @@ object Constants {
     const val USER_SETTINGS = "userSettings"
     const val APP_ENTRY = "appEntry"
 
+    // Database 의 이름
+    const val NEWS_DATABASE_NAME = "news_db"
+
 }

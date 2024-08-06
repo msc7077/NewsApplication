@@ -17,6 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.msc.newsapplication.presentation.PhotoViewModel
+import com.msc.newsapplication.presentation.bookmark.BookmarkScreen
+import com.msc.newsapplication.presentation.bookmark.BookmarkViewModel
+import com.msc.newsapplication.presentation.details.DetailsScreen
 import com.msc.newsapplication.presentation.home.HomeScreen
 import com.msc.newsapplication.presentation.home.HomeViewModel
 import com.msc.newsapplication.presentation.onboarding.OnBoardingScreen
@@ -57,9 +60,10 @@ fun NavGraph (
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    val viewModel: SearchViewModel = hiltViewModel()
-                    SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
-
+//                    val viewModel: SearchViewModel = hiltViewModel()
+//                    SearchScreen(state = viewModel.state.value, event = viewModel::onEvent, navigate = {})
+                    val viewModel: BookmarkViewModel = hiltViewModel()
+                    BookmarkScreen(state = viewModel.state.value, navigate = {})
                 }
             }
         }
