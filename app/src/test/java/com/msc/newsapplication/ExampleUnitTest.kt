@@ -1,4 +1,4 @@
-package com.msc.newsapplication
+package com.msc.application
 
 import org.junit.Test
 

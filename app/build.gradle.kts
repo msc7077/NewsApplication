@@ -3,18 +3,19 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.msc.newsapplication"
+    namespace = "com.msc.application"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.msc.newsapplication"
+        applicationId = "com.msc.application"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
